@@ -1,6 +1,10 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const date = require(__dirname + '/date.js');
+const dotenv = require("dotenv")
+dotenv.config()
+
+
 
 // DB
 const mongoose = require('mongoose')
@@ -18,7 +22,7 @@ app.use(express.static("public"));
 
 // Database Stuff
 
-mongoose.connect("mongodb+srv://todoadmin:TSCc4ruOwlwSKh23@cluster0.yhxrpb3.mongodb.net/?retryWrites=true&w=majority", {useNewUrlParser : true})
+mongoose.connect(`mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0.yhxrpb3.mongodb.net/?retryWrites=true&w=majority`, {useNewUrlParser : true})
 
 const itemSchema = {
     name: String
